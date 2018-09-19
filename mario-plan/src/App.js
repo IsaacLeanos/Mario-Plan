@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import BrowserRouter from 'react-router-dom'
+import {BrowserRouter} from 'react-router-dom'
+import NavBar from './component/layout/NavBar'
 
 class App extends Component {
   render() {
     return (
       <BrowserRouter>
       <div className="App">
-      <h1>Mario Plan</h1>
+      <NavBar/>
       </div>
       </BrowserRouter>
     );
