@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import createProject from '../../store/action/projectAction'
+import {createProject} from '../../store/action/projectAction'
 import{connect}from'react-redux'
 
 class CreateProject extends Component {
@@ -34,7 +34,7 @@ class CreateProject extends Component {
     </div>
 
     <div className='input-field'>
-    <button className='btn pink lighten-1'>Login</button>
+    <button className='btn pink lighten-1'>Create</button>
     </div>
     </form>
 
@@ -44,9 +44,7 @@ class CreateProject extends Component {
 }
 
 const mapDispatchToProps=(dispatch)=>({
-  createProject:(project)=>{
-    dispatch(createProject(project))
-  }
+  createProject:project=>dispatch(createProject(project))
 })
 
 export default connect(null,mapDispatchToProps)(CreateProject)
