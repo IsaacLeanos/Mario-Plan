@@ -1,6 +1,11 @@
+
+
+
+
 export const createProject=(project)=>{
     return(dispatch,getState,{getFirebase,getFirestore})=>{
         const firestore=getFirestore()
+        // console.log('getFirestore object',firestore)
         firestore.collection('projects').add({
             ...project,
             authorFirstName:'first',
