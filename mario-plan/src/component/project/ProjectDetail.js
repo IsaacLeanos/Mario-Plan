@@ -6,7 +6,6 @@ import{firestoreConnect}from'react-redux-firebase'
 
 const ProjectDetails=(props) => {
   const {project}=props  
-  console.log('project',project)
   if(project){
     return (
       <div className='container section project-details'>
@@ -35,7 +34,6 @@ const ProjectDetails=(props) => {
 }
 
 const mapStateToProps=(state,props)=>{
-  console.log(state)
   const id=props.match.params.id
   const projects=state.firestoreReducer.data.projects
   const project=projects?projects[id]:null
@@ -46,6 +44,5 @@ const mapStateToProps=(state,props)=>{
 
 export default compose(
   connect(mapStateToProps),
-  //firebase listen/display from projects collection
   firestoreConnect([{collection:'projects'}])
 )(ProjectDetails)

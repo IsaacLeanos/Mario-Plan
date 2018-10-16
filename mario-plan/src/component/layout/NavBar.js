@@ -19,7 +19,7 @@ const NavBar=(props)=>{
 }
 
 const mapStateToProps=(state)=>{
-    console.log(state)
+    // console.log('NavBar',state)
     return{
         auth:state.firebaseReducer.auth
     }
