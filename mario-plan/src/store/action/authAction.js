@@ -9,8 +9,8 @@ export const signIn=(credentials)=>{
         .then(()=>{
             dispatch({type:'LOGIN_SUCCESS'})
         })
-        .catch((err)=>{
-            dispatch({type:'LOGIN_ERROR',err})
+        .catch((e)=>{
+            dispatch({type:'LOGIN_ERROR',e})
         })
     }
 }
@@ -22,8 +22,34 @@ export const signOut=()=>{
         .then(()=>{
             dispatch({type:'SIGNOUT_SUCCESS'})
         })
-        .catch((err)=>{
-            dispatch({type:'SIGNOUT_ERROR',err})
+        .catch((e)=>{
+            dispatch({type:'SIGNOUT_ERROR',e})
+        })
+    }
+}
+
+export const signUp=(newUser)=>{
+    return(dispatch,{getFirebase,getFirestore})=>{
+        const firebase=getFirebase()
+        const firestore=getFirestore()
+        console.log('getFirestore object',firestore)
+        firebase.auth().createUserWithEmailAndPassword(newUser.email,newUser.password)
+        .then((res)=>{
+            //add document to users collection
+            //.add() generates uid, so avoid it here
+            console.log('newUser res',res)
+            console.log('newUser',res.user)
+            return firestore.collection('users').doc(res.user.uid).set({
+                firstName:newUser.firstName,
+                lastName:newUser.lastName,
+                initials:newUser.firstName[0]+newUser.lastName
+            })
+        })
+        .then(()=>{
+            dispatch({type:'SIGNUP_SUCCESS'})
+        })
+        .catch((e)=>{
+            dispatch({type:'SIGNUP_ERROR',e})
         })
     }
 }
