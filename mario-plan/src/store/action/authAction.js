@@ -29,7 +29,7 @@ export const signOut=()=>{
 }
 
 export const signUp=(newUser)=>{
-    return(dispatch,{getFirebase,getFirestore})=>{
+    return(dispatch,getState,{getFirebase,getFirestore})=>{
         const firebase=getFirebase()
         const firestore=getFirestore()
         console.log('getFirestore object',firestore)
@@ -38,7 +38,6 @@ export const signUp=(newUser)=>{
             //add document to users collection
             //.add() generates uid, so avoid it here
             console.log('newUser res',res)
-            console.log('newUser',res.user)
             return firestore.collection('users').doc(res.user.uid).set({
                 firstName:newUser.firstName,
                 lastName:newUser.lastName,

@@ -18,10 +18,11 @@ class SignUp extends Component {
   onSubmit=(e)=>{
     e.preventDefault()
     this.props.signUp(this.state)
+    // console.log('signup')
   }
 
   render() {
-    const{auth}=this.props
+    const{auth,authError}=this.props
     if(auth.uid)return <Redirect to='/'/>
     return (
     <div className='container'>
@@ -49,7 +50,11 @@ class SignUp extends Component {
     </div>
 
     <div className='input-field'>
-    <button className='btn pink lighten-1'>Login</button>
+    <button className='btn pink lighten-1'>Sign Up</button>
+    </div>
+    
+    <div className='red-text center'>
+    {authError?<p>{authError}</p>:null}
     </div>
     </form>
 
@@ -61,6 +66,7 @@ class SignUp extends Component {
 const mapStateToProps=(state)=>{
   return{
     auth:state.firebaseReducer.auth,
+    authError:state.authReducer.authError
   }
 }
 
