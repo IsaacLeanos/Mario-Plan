@@ -29,7 +29,6 @@ class Dashboard extends Component {
 }
 
 const mapStateToProps=(state)=>{
-  console.log('Dashboard',state)
   return{
     projects:state.firestoreReducer.ordered.projects,
     auth:state.firebaseReducer.auth
